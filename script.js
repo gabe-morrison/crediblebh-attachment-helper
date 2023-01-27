@@ -8,21 +8,24 @@
 // @description 1/27/2023, 8:56:24 AM
 // ==/UserScript==
 
+
+
+
 const fileInput = document.getElementById('cwfileinput');
 const textInput = document.querySelector('input[type="text"]');
 
-const guessFolder = () => {
+const predictFolder = () => {
   const admissionRegex = new RegExp(['Referral'].join('|', 'i'));
   const assessmentRegex = new RegExp(['Stressful Events'].join('|', 'i'));
-  const financialRegex = new RegExp(['Benefit', 'SSI', 'Financial', 'SNAP', 'Energy', 'Asst'].join('|', 'i'));
-  const hospitalRegex = new RegExp(['Discharge', 'Regions', 'United', 'Abbott', 'Mercy', 'Admission'].join('|', 'i'));
-  const housingRegex = new RegExp(['Lease', 'Housing' ].join('|', 'i'));;
-  const labsRegex = new RegExp(['CBC', 'Lipid', 'Panel', 'Labs'].join('|', 'i'));
-  const legalRegex = new RegExp(['Order', 'Commitment', 'PD', 'Petition', 'PPS', 'SSID'].join('|', 'i'));
-  const medicalRegex = new RegExp(['Visit', 'AVS'].join('|', 'i'));
+  const financialRegex = new RegExp(['Benefit', 'SSI', 'Financial', 'SNAP', 'Energy', 'Asst', 'Payee', 'Deposit', 'Account', 'MSA', 'GA ', 'EAP '].join('|', 'i'));
+  const hospitalRegex = new RegExp(['Disch', 'Regions', 'United', 'Abbott', 'Mercy', 'Admis', 'ANW'].join('|', 'i'));
+  const housingRegex = new RegExp(['Lease', 'Housing', 'DSP', 'Dale', 'PHA', 'Inspection'].join('|', 'i'));;
+  const labsRegex = new RegExp(['CBC', 'Lipid', 'Panel', 'Labs', 'A1C'].join('|', 'i'));
+  const legalRegex = new RegExp(['Order', 'Commitment', 'PD', 'Petition', 'PPS', 'SSID', 'Recommit', 'Extension', 'Rule 20', "Waiver", 'Revocation', 'Court', 'NTP', 'Affidavit', 'Examiner', '60-90', '6090'].join('|', 'i'));
+  const medicalRegex = new RegExp(['Visit', 'AVS', 'Rx', 'Endoc', 'HP', 'Allina', 'Physical'].join('|', 'i'));
   const correspondenceRegex = new RegExp(['Letter'].join('|', 'i'));
   const roiRegex = new RegExp(['ROI', 'Release'].join('|', 'i'));
-  const vocRegex = new RegExp([''].join('|', 'i'));
+  const vocRegex = new RegExp(['job', 'work'].join('|', 'i'));
   const regexObj = {
     'admission': admissionRegex,
     'assessment': assessmentRegex,
@@ -66,12 +69,11 @@ const guessFolder = () => {
        }
     }
   }
+  return 11;
 }
 
 fileInput.addEventListener('change', () => {
 	textInput.value = document.querySelector('p.name').textContent;
 	document.querySelector('input[type="checkbox"]').checked = true;
-  document.querySelector('select').value = guessFolder();
+  document.querySelector('select').value = predictFolder();
 })
-
-
